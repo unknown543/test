@@ -37,5 +37,5 @@ jobs:
         with:
           appId: ${{secrets.APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
-          groups: testers
+          groups: test-groups
           file: app-release.apk
