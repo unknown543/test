@@ -31,6 +31,7 @@ jobs:
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
           
       - name: check out  
         uses: actions/checkout@v2
