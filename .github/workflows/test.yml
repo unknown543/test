@@ -25,14 +25,22 @@ jobs:
       #    token: ${{ secrets.test }}
       #    prerelease: false
         
-      - name: Upload app bundle
-        uses: actions/upload-artifact@v2
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
+          
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+        # Artifact name
+          name: apk
+        # Destination path
+          path: build/app/outputs/flutter-apk/app-release.apk
         
       - name: Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{secrets.APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
