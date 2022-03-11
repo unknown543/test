@@ -21,8 +21,8 @@ jobs:
       - name: release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/app-release.aab"
-          tag: 0.1
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          tag: 0.2
           token: ${{ secrets.test }}
           prerelease: false
           
