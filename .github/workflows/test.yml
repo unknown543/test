@@ -1,0 +1,40 @@
+name: Dart
+
+on: [push]
+env:
+  VERSION: flutter --version
+jobs:
+  flutter_test:
+    name: flutter test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter build apk
+      
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      #- name: release
+      #  uses: ncipollo/release-action@v1
+      #  with:
+      #    artifacts: "build/app/outputs/bundle/release/app-release.aab"
+      #    tag: 15
+      #    token: ${{ secrets.test }}
+      #    prerelease: false
+        
+      - name: Upload app bundle
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+        
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+        with:
+          appId: ${{secrets.APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-release.apk
