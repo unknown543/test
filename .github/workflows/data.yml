@@ -17,6 +17,14 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk
       - run: ls
+      
+      - name: upload
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+          
       - run: cd build
       - run: ls
       - run: cd app
