@@ -15,22 +15,27 @@ jobs:
       - run: flutter clean
       - run: flutter pub get
       - run: flutter build apk
-      - uses: actions/checkout@v2
+      - name: check out
+        uses: actions/checkout@v2
 
-      #- name: release
-      #  uses: ncipollo/release-action@v1
-      #  with:
-      #    artifacts: "build/app/outputs/bundle/release/app-release.aab"
-      #    tag: 15
-      #    token: ${{ secrets.test }}
-      #    prerelease: false
-      - uses: actions/upload-artifact@v3.0.0
+      - name: release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/bundle/release/app-release.aab"
+          tag: 0.1
+          token: ${{ secrets.test }}
+          prerelease: false
+          
+      - name: upload
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
           
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v3.0.0
+      - name: check out  
+        uses: actions/checkout@v2
+      - name: download
+        uses: actions/download-artifact@v3.0.0
         with:
           name: release-apk
         
