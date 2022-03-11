@@ -21,7 +21,7 @@ jobs:
       - name: release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
           tag: 0.2
           token: ${{ secrets.test }}
           prerelease: false
@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: ./build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           
       - name: check out  
