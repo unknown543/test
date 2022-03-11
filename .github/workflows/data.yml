@@ -1,0 +1,12 @@
+name: Dart
+
+on: [push]
+env:
+  VERSION: flutter --version
+jobs:
+  flutter_test:
+    name: flutter test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ls
