@@ -27,9 +27,12 @@ jobs:
           
       - run: cd build
       - run: ls
+      
       - run: cd app
       - run: ls
+      
       - run: cd outputs
       - run: ls
+      
       - run: cd flutter-apk
       - run: ls
