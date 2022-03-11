@@ -25,14 +25,17 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           
-      - run: cd build
-      - run: ls
-      
-      - run: cd app
-      - run: ls
-      
-      - run: cd outputs
-      - run: ls
-      
-      - run: cd flutter-apk
-      - run: ls
+      - name: check out  
+        uses: actions/checkout@v2
+        
+      - name: download
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: release-apk
+        
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{secrets.APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: testers
+          file: app-release.apk
