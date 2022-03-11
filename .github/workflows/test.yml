@@ -22,7 +22,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
-          tag: 0.3
+          tag: 0.4
           token: ${{ secrets.test }}
           prerelease: false
           
